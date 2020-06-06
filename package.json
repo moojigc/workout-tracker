@@ -22,7 +22,5 @@
     "express": "^4.17.1",
     "mongoose": "^5.9.16"
   },
-  "devDependencies": {
-    "moment": "^2.26.0"
-  }
+  "devDependencies": {}
 }
