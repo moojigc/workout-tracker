@@ -2,13 +2,10 @@
 const Workout = require("../models/Workout");
 const serverError = (res, error) => {
 	console.log(error);
-	res.status(500).send("<h1>Internal server error.</h1>");
+	res.status(500).json({ message: "Internal server error." });
 };
 
 module.exports = (router, ObjectId) => {
-	router.get("/exercise", (req, res) => {
-		res.sendFile("../public/exercise.html");
-	});
 	router.get("/api/workouts", async (req, res) => {
 		try {
 			const workouts = await Workout.find({}).sort({ date: -1 });
@@ -34,12 +31,13 @@ module.exports = (router, ObjectId) => {
 		}
 	});
 	router.put("/api/workouts/:id", async (req, res) => {
+		console.log(req.body);
 		try {
 			const workouts = await Workout.updateOne(
 				{ _id: ObjectId(req.params.id) },
 				{
 					$push: {
-						exercises: req.body.exercises
+						exercises: req.body
 					}
 				}
 			);

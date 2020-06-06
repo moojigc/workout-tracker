@@ -1,12 +1,14 @@
 const { Schema, model } = require("mongoose");
 
 const WorkoutSchema = new Schema({
-	name: String,
 	day: {
-		type: Date,
+		type: Number,
 		default: Date.now
 	},
-	exercises: Array
+	exercises: {
+		type: Array,
+		required: true
+	}
 });
 
 const Workout = model("Workout", WorkoutSchema);
